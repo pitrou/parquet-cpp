@@ -24,15 +24,15 @@ environment:
       PYTHON: "3.5"
       ARCH: "64"
       CONFIGURATION: "Release"
-    - GENERATOR: Visual Studio 14 2015 Win64
+    - GENERATOR: Ninja
       PYTHON: "3.5"
       ARCH: "64"
       CONFIGURATION: "Debug"
-    - GENERATOR: Visual Studio 14 2015 Win64
+    - GENERATOR: Ninja
       PYTHON: "3.5"
       ARCH: "64"
       CONFIGURATION: "Release"
-    - GENERATOR: Visual Studio 14 2015 Win64
+    - GENERATOR: Ninja
       PYTHON: "3.5"
       ARCH: "64"
       CONFIGURATION: "Debug"
@@ -42,7 +42,7 @@ environment:
       ARCH: "64"
       CONFIGURATION: "Release"
       USE_STATIC_CRT: "ON"
-    - GENERATOR: Visual Studio 14 2015 Win64
+    - GENERATOR: Ninja
       PYTHON: "3.5"
       ARCH: "64"
       CONFIGURATION: "Toolchain"
@@ -53,7 +53,9 @@ environment:
 init:
   - set MINICONDA=C:\Miniconda35-x64
   - set PATH=%MINICONDA%;%MINICONDA%/Scripts;%MINICONDA%/Library/bin;%PATH%
-  - if "%GENERATOR%"=="NMake Makefiles" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
+  - if "%GENERATOR%"=="NMake Makefiles" set need_vcvarsall=1
+  - if "%GENERATOR%"=="Ninja" set need_vcvarsall=1
+  - if defined need_vcvarsall call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
 
 build_script:
   - call ci\msvc-build.bat

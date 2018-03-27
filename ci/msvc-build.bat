@@ -32,8 +32,12 @@ if NOT "%CONFIGURATION%" == "Debug" (
   set PARQUET_CXXFLAGS="%PARQUET_CXXFLAGS% /WX"
 )
 
+if "%GENERATOR%" == "Ninja" (
+  conda install -y -q -c conda-forge ninja
+)
+
 if "%CONFIGURATION%" == "Toolchain" (
-  conda install -y boost-cpp=1.63 thrift-cpp=0.11.0 ^
+  conda install -y -q boost-cpp=1.63 thrift-cpp=0.11.0 ^
       brotli=0.6.0 zlib=1.2.11 snappy=1.1.6 lz4-c=1.7.5 zstd=1.2.0 ^
       -c conda-forge
 
