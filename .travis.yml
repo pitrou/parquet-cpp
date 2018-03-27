@@ -16,6 +16,10 @@
 # under the License.
 sudo: required
 dist: trusty
+
+cache:
+  ccache: true
+
 addons:
   apt:
     sources:
@@ -35,6 +39,7 @@ addons:
     - bison
     - flex
     - pkg-config
+
 matrix:
   fast_finish: true
   include:
